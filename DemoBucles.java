@@ -6,14 +6,14 @@ public class DemoBucles
 {
     private final char ASTERISCO = '*';
     private final char ESPACIO = ' ';
-    private Random random;
+    private Random generador;
 
     /**
      * Constructor  
      */
     public DemoBucles()
     {
-        random = new Random();
+        generador = new Random();
     }
 
     /**
@@ -56,7 +56,15 @@ public class DemoBucles
      *  64 =    64
      */
     public void escribirSumaPotencias(int numero) {
+        int comprobante = 0;
+        int contador = 1;
+        System.out.printf("\n%6d =", numero);
 
+        while(contador <= 6 && numero != comprobante){
+            System.out.printf("%6d",mayorPotencia2(numero - comprobante));
+            comprobante += mayorPotencia2(numero - comprobante);
+            contador ++;
+        }
     }
 
     /**
@@ -72,6 +80,25 @@ public class DemoBucles
      */
     public void generarAleatorios(int n) {
 
+        int contador = 0;
+        int aleatorio = 1;
+        
+        System.out.printf("%s", "Nºs aleatorios como suma de potencias de " + n);
+        while(aleatorio != 0 && contador < n){
+            aleatorio = generador.nextInt(256);
+            escribirSumaPotencias(aleatorio);
+            contador++;
+        }
+
+        if(aleatorio == 0){
+            System.out.println("\nBucle terminado porque salió el " + aleatorio);
+        }
+
+        else{
+            System.out.println("\nBucle terminado porque se han generado " 
+                + contador + " aleatorios");
+        }
+
     }
 
     /**
@@ -82,9 +109,14 @@ public class DemoBucles
     public void escribirCaracter(int n, char caracter)
     {
 
-        for(int i = 1; i <= n; i++)
-        {
-            System.out.print(caracter);
+        for(int i = 1; i <= n; i ++){
+            if(caracter == ASTERISCO){
+                System.out.printf("%c",ASTERISCO);
+            }else if(caracter == ESPACIO){
+                System.out.printf("%c",ESPACIO);
+            }else{
+                System.out.printf("%s","Los carácteres permitidos son '*' y ' '");
+            }
         }
 
     }
@@ -103,14 +135,12 @@ public class DemoBucles
             {
                 for(int k = 1; k <= alto; k++)
                 {
-                    escribirCaracter(ancho,'*');
+                    escribirCaracter(ancho,ASTERISCO);
                 }
-                
+
                 System.out.println();
             }
         }
-
-        
 
     }
 }

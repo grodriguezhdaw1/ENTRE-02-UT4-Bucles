@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  *  @author - 
  *  
@@ -25,7 +25,25 @@ public class AppDemoBucles
      */
     public static void main(String[] args)
     {
+        Scanner teclado = new Scanner(System.in);
+         DemoBucles demo = new DemoBucles();
+         int tope = 0;
+         int error = 0;
+         do{
+             String stringError = "";
+             if(error > 0){
+                 stringError = "Error, ";
+             }
+             System.out.println(stringError + "Teclee tope de aleatorios a generar [10, 15]: ");
+             tope = teclado.nextInt();
+             error++;
+         }while(tope <= 10 || tope >= 15);
+         demo.generarAleatorios(tope);
+         Utilidades.hacerPausa();
+         Utilidades.borrarPantalla();
+         demo.mostrarEscalera(6, 4, 12);
+    }
          
     }
-}
+
 
